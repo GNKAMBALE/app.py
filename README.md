@@ -15,23 +15,23 @@ def search_comments():
     reply_to = request.args.get('reply_to')
     search_text = request.args.get('search_text')
 
-    # Construct the URL for the base API
+    
     url = f"{BASE_API_URL}?search_author={search_author}"
 
-    # Add date range parameters if provided
+    
     if at_from:
         url += f"&at_from={at_from}"
 
     if at_to:
         url += f"&at_to={at_to}"
 
-    # Make a request to the base API
+    
     response = requests.get(url)
 
     if response.status_code == 200:
         comments = response.json()
 
-        # Apply additional filters based on like, reply, and search_text
+        
         filtered_comments = []
 
         for comment in comments:
